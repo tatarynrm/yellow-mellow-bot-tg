@@ -50,7 +50,7 @@ bot.hears('Замовити столик 🪑', (ctx) => {
 `);
 })
 
-bot.hears('Ми на Google Maps 🗺️', (ctx) => {
+bot.hears('Розсташування 🗺️', (ctx) => {
     bot.telegram.sendLocation(ctx.chat.id, latitude = '49.83870331057144', longitude = '24.027840313759', { proximity_alert_radius: 10 });
 })
 
