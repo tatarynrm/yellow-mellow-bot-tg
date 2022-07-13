@@ -82,7 +82,7 @@ bot.hears('Коктейлі 🍹', (ctx) => {
         return ctx.replyWithPhoto({ source: fs.createReadStream('img/cocktails2.jpg') })
     }
 
-    setTimeout(secondPhoto, 800);
+    setTimeout(secondPhoto, 300);
 
 })
 bot.hears('Напої 🧋', (ctx) => {
