@@ -76,8 +76,9 @@ bot.hears('Short Drinks 🍸', (ctx) => {
     ctx.replyWithPhoto({ source: fs.createReadStream('img/short.jpg') })
 })
 bot.hears('Коктейлі 🍹', (ctx) => {
-    ctx.replyWithPhoto({ source: fs.createReadStream('img/cocktails.jpg') });
+    ctx.replyWithPhoto({ source: fs.createReadStream('img/cocktails.jpg') })
     ctx.replyWithPhoto({ source: fs.createReadStream('img/cocktails2.jpg') })
+
 })
 bot.hears('Напої 🧋', (ctx) => {
     ctx.replyWithPhoto({ source: fs.createReadStream('img/drinks.jpg') })
