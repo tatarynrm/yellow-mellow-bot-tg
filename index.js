@@ -1,8 +1,19 @@
-const { Telegraf, Markup } = require('telegraf')
+const { Telegraf, Scenes, Markup, session } = require('telegraf')
+
 require('dotenv').config();
-const fs = require('fs')
 
 const bot = new Telegraf(process.env.BOT_TOKEN)
+
+const fs = require('fs')
+const birthdayScene = require('./scenes/birthday.js')
+
+
+const stage = new Scenes.Stage([birthdayScene])
+bot.use(session())
+bot.use(stage.middleware())
+
+
+
 
 bot.start((ctx) => {
     bot.telegram.sendMessage(ctx.chat.id,
@@ -33,9 +44,13 @@ bot.start((ctx) => {
 
                 ],
                 [
-                    { text: 'Розсташування 🗺️' }
+                    { text: 'Місцезнаходження🎯' }
 
-                ]
+                ],
+                // [
+                //     { text: 'Хочу відсвяткувати ДР у вас!' }
+
+                // ]
 
             ],
             resize_keyboard: true,
@@ -50,7 +65,7 @@ bot.hears('Замовити столик 🪑', (ctx) => {
 `);
 })
 
-bot.hears('Розсташування 🗺️', (ctx) => {
+bot.hears('Місцезнаходження🎯', (ctx) => {
     bot.telegram.sendLocation(ctx.chat.id, latitude = '49.83870331057144', longitude = '24.027840313759', { proximity_alert_radius: 10 });
 })
 
@@ -91,7 +106,7 @@ bot.hears('Напої 🧋', (ctx) => {
 bot.hears('Напої 🧋', (ctx) => {
     ctx.replyWithPhoto({ source: fs.createReadStream('img/drinks.jpg') })
 })
-// bot.command('stream', (ctx) => ctx.replyWithPhoto({ source: fs.createReadStream('/cats/cat2.jpeg') }))
+// bot.hears('Хочу відсвяткувати ДР у вас!', ctx => ctx.scene.enter('birthdayWizard'))
 
 
 // кальян
@@ -102,6 +117,9 @@ bot.hears('Напої 🧋', (ctx) => {
 
 bot.launch()
 
+
+
 // Enable graceful stop
 process.once('SIGINT', () => bot.stop('SIGINT'))
 process.once('SIGTERM', () => bot.stop('SIGTERM'))
+
