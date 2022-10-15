@@ -1,15 +1,8 @@
 const { Telegraf, Scenes, Markup, session } = require("telegraf");
-
 const fs = require("fs");
 const axios = require("axios");
-const dataBase = fs.readFileSync("database.json");
-
-// const RuslanTelegramId = '1060839254';
-// const RuslanTelegramId = '184015320';
 require("dotenv").config();
-
 const bot = new Telegraf(process.env.BOT_TOKEN);
-
 const birthdayScene = require("./scenes/birthday.js");
 const { query, response } = require("express");
 
